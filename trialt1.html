@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DooEnglish 養成課t1</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="practiceeye.css">
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1877745272396859');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1877745272396859&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code --><!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LW2HGSDQCV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-LW2HGSDQCV');
+  </script>
+</head>
+<body>
+  <div id="startOverlay" class="overlay">
+  <div class="overlay-content">
+    <p style="line-height:1.8; font-size:1.05em;">
+      <b>歡迎你，你將會看到一段英文對話，你可以：</b>
+
+      <ul>
+        <li>一下一下地點擊打開每一句</li>
+        <li>播放聽讀音</li>
+        <li>打開句子的中文意思</li>
+        <li>最後會有重點用語回顧</li>
+      </ul>
+
+    </p>
+    <p style="text-align: center;"><button class="start-btn" onclick="hideOverlay()">開始</button></p>
+  </div>
+</div>
+
+  <div class="chat-container">
+    <div class="chat-header">咖啡店店員給錯飲料
+      <button class="main-menu-btn" onclick="history.back()" title="返回主目錄">離開試學</button>
+    </div>
+    <div class="chat-box" id="chatBox">
+      <div class="tap-hint" id="tapHint">點一下看下一句<br><br><br></div>
+    </div>
+    <div class="vocab-review" id="vocabReview"></div>
+  </div>
+  <script>
+    // 你原有的 dialogue、vocabularies 內容直接貼即可
+
+
+    // dialogue 省略（與前一版一致，每句都有 audio 欄位）
+
+    const dialogue = [
+    { role: 'b', en: "Hi, I think this might not be my drink.", zh: "嗨，我想這杯可能不是我的飲料。", audio: "https://dooenglish.net/chatcrs/audios/trialt1/chatsa_1.mp3" },
+    { role: 'a', en: "Oh, I’m sorry! What did you order?", zh: "啊，不好意思！請問你原本點的是什麼？", audio: "https://dooenglish.net/chatcrs/audios/trialt1/chatsb_1.mp3" },
+    { role: 'b', en: "I ordered an iced caramel latte, but this tastes like a mocha.", zh: "我點的是冰焦糖拿鐵，可是這喝起來像摩卡。", audio: "https://dooenglish.net/chatcrs/audios/trialt1/chatsa_2.mp3" },
+    { role: 'a', en: "Oh shoot, my bad! Let me check your order real quick.", zh: "哎呀，抱歉！我馬上幫你查一下訂單。", audio: "https://dooenglish.net/chatcrs/audios/trialt1/chatsb_2.mp3" },
+    { role: 'b', en: "No worries, it happens.", zh: "沒事啦，這種事常有。", audio: "https://dooenglish.net/chatcrs/audios/trialt1/chatsa_3.mp3" },
+    { role: 'a', en: "Yep, you’re right, it was supposed to be an iced caramel latte.", zh: "對耶，您沒記錯，應該是冰焦糖拿鐵。", audio: "https://dooenglish.net/chatcrs/audios/trialt1/chatsb_3.mp3" },
+    { role: 'b', en: "Yeah, no biggie, just wanted to make sure.", zh: "沒關係，我只是想確認一下。", audio: "https://dooenglish.net/chatcrs/audios/trialt1/chatsa_4.mp3" },
+    { role: 'a', en: "Thanks for letting me know! I’ll whip up the right one for you.", zh: "謝謝你告訴我！我馬上幫你做對的那杯。", audio: "https://dooenglish.net/chatcrs/audios/trialt1/chatsb_4.mp3" },
+    { role: 'b', en: "Appreciate it! Sorry for the trouble.", zh: "謝謝你！不好意思還要麻煩你。", audio: "https://dooenglish.net/chatcrs/audios/trialt1/chatsa_5.mp3" },
+    { role: 'a', en: "Not a problem at all. We want to get it right.", zh: "一點也不麻煩，我們希望做對。", audio: "https://dooenglish.net/chatcrs/audios/trialt1/chatsb_5.mp3" },
+    { role: 'b', en: "Thanks, I’m just really craving that caramel.", zh: "感謝，我真的很想喝焦糖的。", audio: "https://dooenglish.net/chatcrs/audios/trialt1/chatsa_6.mp3" },
+    { role: 'a', en: "Totally get it, caramel lattes are legit.", zh: "完全懂，焦糖拿鐵真的很讚。", audio: "https://dooenglish.net/chatcrs/audios/trialt1/chatsb_6.mp3" },
+    { role: 'b', en: "Your guys’ coffee usually slaps.", zh: "你們的咖啡通常都超好喝的。", audio: "https://dooenglish.net/chatcrs/audios/trialt1/chatsa_7.mp3" },
+    { role: 'a', en: "Glad to hear that! We do our best.", zh: "很高興你這麼說！我們會努力做好的。", audio: "https://dooenglish.net/chatcrs/audios/trialt1/chatsb_7.mp3" },
+    { role: 'b', en: "How long do you think it’ll take?", zh: "你覺得大概還要多久？", audio: "https://dooenglish.net/chatcrs/audios/trialt1/chatsa_8.mp3" },
+    { role: 'a', en: "Should be just a couple minutes, tops.", zh: "應該頂多幾分鐘就好。", audio: "https://dooenglish.net/chatcrs/audios/trialt1/chatsb_8.mp3" },
+    { role: 'b', en: "Cool, I’ll just hang out over here.", zh: "好，我就在這邊等一下。", audio: "https://dooenglish.net/chatcrs/audios/trialt1/chatsa_9.mp3" },
+    { role: 'a', en: "Awesome, I’ll call your name when it’s ready.", zh: "好的，做好會叫你的名字。", audio: "https://dooenglish.net/chatcrs/audios/trialt1/chatsb_9.mp3" },
+    { role: 'b', en: "Thanks!", zh: "謝謝！", audio: "https://dooenglish.net/chatcrs/audios/trialt1/chatsa_10.mp3" },
+    { role: 'a', en: "Hey, would you like a free cookie while you wait?", zh: "對了，要不要等的時候請你吃塊餅乾？", audio: "https://dooenglish.net/chatcrs/audios/trialt1/chatsb_10.mp3" },
+    { role: 'b', en: "Seriously? That’s awesome, sure!", zh: "真的嗎？太棒了，好啊！", audio: "https://dooenglish.net/chatcrs/audios/trialt1/chatsa_11.mp3" },
+    { role: 'a', en: "Least we can do for messing up your drink.", zh: "這是我們做錯飲料的小補償。", audio: "https://dooenglish.net/chatcrs/audios/trialt1/chatsb_11.mp3" },
+    { role: 'b', en: "No worries, you guys are chill.", zh: "沒關係啦，你們人都很好。", audio: "https://dooenglish.net/chatcrs/audios/trialt1/chatsa_12.mp3" },
+    { role: 'a', en: "Here’s your cookie. The latte will be out in a sec.", zh: "這是你的餅乾，飲料很快就來。", audio: "https://dooenglish.net/chatcrs/audios/trialt1/chatsb_12.mp3" },
+    { role: 'b', en: "Thanks, this totally made my day.", zh: "謝啦，這讓我心情超好。", audio: "https://dooenglish.net/chatcrs/audios/trialt1/chatsa_13.mp3" },
+    { role: 'a', en: "Alright, iced caramel latte coming right up!", zh: "好，冰焦糖拿鐵馬上來！", audio: "https://dooenglish.net/chatcrs/audios/trialt1/chatsb_13.mp3" },
+    { role: 'b', en: "That looks perfect.", zh: "這看起來超棒。", audio: "https://dooenglish.net/chatcrs/audios/trialt1/chatsa_14.mp3" },
+    { role: 'a', en: "Sorry again for the mix-up!", zh: "再跟你說一次抱歉！", audio: "https://dooenglish.net/chatcrs/audios/trialt1/chatsb_14.mp3" },
+    { role: 'b', en: "No big deal, stuff happens.", zh: "沒關係啦，這種事常有。", audio: "https://dooenglish.net/chatcrs/audios/trialt1/chatsa_15.mp3" },
+    { role: 'a', en: "If you need anything else, just holler.", zh: "如果還需要什麼，直接跟我說。", audio: "https://dooenglish.net/chatcrs/audios/trialt1/chatsb_15.mp3" },
+    { role: 'b', en: "Will do. Thanks a ton!", zh: "一定會，真的很感謝！", audio: "https://dooenglish.net/chatcrs/audios/trialt1/chatsa_16.mp3" },
+    { role: 'a', en: "Have an awesome day!", zh: "祝你今天開心！", audio: "https://dooenglish.net/chatcrs/audios/trialt1/chatsb_16.mp3" },
+    { role: 'b', en: "You too!", zh: "你也是！", audio: "https://dooenglish.net/chatcrs/audios/trialt1/chatsa_17.mp3" }
+    ];
+
+    // 你可換成任意5個本段最重要單字/短語，附例句、讀音
+
+    const vocabularies = [
+  {
+    en: "my bad",
+    zh: "承認自己小錯誤時的道歉說法",
+    example: "Sorry, my bad—I totally forgot to email you back.",
+    example_zh: "抱歉，是我疏忽了，竟然沒回你信。",
+    audio: "https://dooenglish.net/chatcrs/audios/trialt1/v_1.mp3",
+    example_audio: "https://dooenglish.net/chatcrs/audios/trialt1/s_1.mp3"
+  },
+  {
+    en: "no worries",
+    zh: "安慰對方，表示沒關係、別擔心",
+    example: "No worries if you’re running late, I can wait.",
+    example_zh: "如果你會遲到沒關係，我可以等。",
+    audio: "https://dooenglish.net/chatcrs/audios/trialt1/v_2.mp3",
+    example_audio: "https://dooenglish.net/chatcrs/audios/trialt1/s_2.mp3"
+  },
+  {
+    en: "no biggie",
+    zh: "事情不嚴重、不必放在心上時用",
+    example: "You spilled a little water? No biggie, I’ll clean it up.",
+    example_zh: "你打翻一點水？沒事，我來擦。",
+    audio: "https://dooenglish.net/chatcrs/audios/trialt1/v_3.mp3",
+    example_audio: "https://dooenglish.net/chatcrs/audios/trialt1/s_3.mp3"
+  },
+  {
+    en: "whip up",
+    zh: "很快做出食物或飲品，常用於餐飲",
+    example: "I can whip up some pancakes in ten minutes.",
+    example_zh: "我十分鐘就能做幾個煎餅。",
+    audio: "https://dooenglish.net/chatcrs/audios/trialt1/v_4.mp3",
+    example_audio: "https://dooenglish.net/chatcrs/audios/trialt1/s_4.mp3"
+  },
+  {
+    en: "craving",
+    zh: "很想吃某食物、突然很想要某物",
+    example: "I’m craving bubble tea so bad right now!",
+    example_zh: "我現在超想喝珍珠奶茶！",
+    audio: "https://dooenglish.net/chatcrs/audios/trialt1/v_5.mp3",
+    example_audio: "https://dooenglish.net/chatcrs/audios/trialt1/s_5.mp3"
+  },
+  {
+    en: "slap(s)",
+    zh: "形容東西特別好吃/超好喝（口語）",
+    example: "This new fried chicken place totally slaps.",
+    example_zh: "這家新炸雞店真的超級好吃。",
+    audio: "https://dooenglish.net/chatcrs/audios/trialt1/v_6.mp3",
+    example_audio: "https://dooenglish.net/chatcrs/audios/trialt1/s_6.mp3"
+  },
+  {
+    en: "hang out",
+    zh: "輕鬆等候、閒晃、與朋友聚會皆可用",
+    example: "Let’s hang out at the park after school.",
+    example_zh: "放學後我們去公園晃晃吧。",
+    audio: "https://dooenglish.net/chatcrs/audios/trialt1/v_7.mp3",
+    example_audio: "https://dooenglish.net/chatcrs/audios/trialt1/s_7.mp3"
+  },
+  {
+    en: "coming right up",
+    zh: "馬上就來，常用於餐飲業服務語",
+    example: "Your order’s coming right up—just one more minute!",
+    example_zh: "你的餐點馬上就好，再等一分鐘！",
+    audio: "https://dooenglish.net/chatcrs/audios/trialt1/v_8.mp3",
+    example_audio: "https://dooenglish.net/chatcrs/audios/trialt1/s_8.mp3"
+  },
+  {
+    en: "mix-up",
+    zh: "混淆、搞錯、東西拿錯等小失誤",
+    example: "Sorry for the mix-up, here’s your correct ticket.",
+    example_zh: "抱歉弄錯了，這是你正確的票。",
+    audio: "https://dooenglish.net/chatcrs/audios/trialt1/v_9.mp3",
+    example_audio: "https://dooenglish.net/chatcrs/audios/trialt1/s_9.mp3"
+  },
+  {
+    en: "holler",
+    zh: "需要幫忙時，口語請對方開口說",
+    example: "If you need anything, just holler—I’m here to help.",
+    example_zh: "有需要幫忙隨時叫我，我在這裡。",
+    audio: "https://dooenglish.net/chatcrs/audios/trialt1/v_10.mp3",
+    example_audio: "https://dooenglish.net/chatcrs/audios/trialt1/s_10.mp3"
+  }
+];
+
+
+  </script>
+  <!-- 最後引入共用 JS 檔案 -->
+  <script src="practiceeye.js"></script>
+</body>
+</html>
