@@ -33,7 +33,7 @@
 
   <script>
 document.addEventListener("DOMContentLoaded", function() {
-  fetch('/pricing.php')
+  fetch('/pricing')
     .then(res => res.json())
     .then(data => {
       document.getElementById('disprice').innerHTML = data.disprice;
